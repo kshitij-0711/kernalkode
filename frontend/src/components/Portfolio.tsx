@@ -39,7 +39,6 @@ const defaultProjects = [
 ];
 
 export default function Portfolio() {
-    const { variant } = useTheme();
     const [projects, setProjects] = useState(defaultProjects);
 
     useEffect(() => {
@@ -54,11 +53,7 @@ export default function Portfolio() {
 
     return (
         <section id="portfolio" className="min-h-screen transition-colors duration-500 bg-[var(--background)]">
-            {variant === 'v1' && <PortfolioV1 projects={projects} />}
-            {variant === 'v2' && <PortfolioV2 projects={projects} />}
-            {variant === 'v3' && <PortfolioV3 projects={projects} />}
-            {/* Fallback */}
-            {!['v1', 'v2', 'v3'].includes(variant) && <PortfolioV1 projects={projects} />}
+            <PortfolioV1 projects={projects} />
         </section>
     );
 }

@@ -43,7 +43,8 @@ const defaultProjects = [
 ];
 
 export default function Portfolio() {
-    const { theme, variant } = useTheme();
+    const { theme } = useTheme();
+    const variant = 'v1' as string;
     const [projects, setProjects] = useState(defaultProjects);
 
     useEffect(() => {

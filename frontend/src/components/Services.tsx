@@ -29,7 +29,7 @@ const defaultServices = [
 ];
 
 export default function Services() {
-    const { variant } = useTheme();
+    const { theme } = useTheme();
     const [services, setServices] = useState(defaultServices);
 
     useEffect(() => {

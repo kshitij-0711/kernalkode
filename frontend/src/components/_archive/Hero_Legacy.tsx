@@ -7,7 +7,8 @@ import { ArrowDown, ArrowRight, Circle, Minus } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Hero() {
-    const { theme, variant } = useTheme();
+    const { theme } = useTheme();
+    const variant = 'v1' as string;
 
     return (
         <section id="hero" className="relative transition-colors duration-500 overflow-hidden">
