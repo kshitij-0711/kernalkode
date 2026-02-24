@@ -63,7 +63,7 @@ export default function Services() {
                                 className="text-5xl md:text-7xl lg:text-8xl font-sans font-black tracking-tighter text-[var(--foreground)] uppercase leading-[0.9] mb-8"
                             >
                                 What<br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--primary)] to-[var(--foreground)]">We Do.</span>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--primary)] to-[var(--foreground)]">We Do</span>
                             </motion.h2>
 
                             <motion.p

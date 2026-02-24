@@ -53,3 +53,38 @@ body {
   font-family: var(--font-sans);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+/* ── Hide Cal.com embed scrollbar by clipping ── */
+/* The wrapper clips overflow so the iframe scrollbar is hidden */
+.cal-inline-container {
+  overflow: hidden !important;
+  position: relative;
+}
+
+/* Push iframe right-edge scrollbar outside the visible container */
+cal-inline,
+.cal-inline-container cal-inline {
+  width: calc(100% + 20px) !important;
+  overflow: hidden !important;
+}
+
+cal-inline iframe,
+.cal-inline-container iframe {
+  width: calc(100% + 20px) !important;
+}
+
+/* Global scrollbar hide as fallback */
+cal-inline::-webkit-scrollbar,
+cal-inline iframe::-webkit-scrollbar,
+iframe[src*="cal.com"]::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+cal-inline,
+cal-inline iframe,
+iframe[src*="cal.com"] {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
