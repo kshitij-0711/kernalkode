@@ -74,10 +74,10 @@ function HeroEditorial() {
                         initial={{ y: 30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                        className="text-[12vw] md:text-[8vw] leading-[0.9] font-sans font-black tracking-tighter text-[var(--foreground)] mb-8"
+                        className="text-4xl md:text-5xl lg:text-[4rem] leading-[1.1] font-sans font-bold tracking-tighter text-[var(--foreground)] mb-8 max-w-5xl"
                     >
-                        WE BUILD DIGITAL <br />
-                        <span className="text-[var(--primary)]">LEGACIES.</span>
+                        We help businesses increase revenue
+                        through strategy-driven websites.
                     </motion.h1>
 
                     {/* Sub-headline with text generation effect */}
@@ -111,43 +111,42 @@ function HeroEditorial() {
                         initial={{ y: 30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                        className="flex flex-col sm:flex-row gap-4"
+                        className="flex flex-col sm:flex-row gap-4 items-center"
                     >
-                        <Link href="#contact" className="px-8 py-4 bg-[var(--foreground)] text-[var(--background)] rounded-full hover:bg-[var(--primary)] hover:text-white transition-all duration-300 font-bold text-center">
-                            Start a Project
+                        <Link href="#contact" className="group relative overflow-hidden px-8 py-4 bg-[var(--primary)] text-[var(--background)] rounded-full font-semibold text-center isolate hover:bg-[var(--primary)] inline-block">
+                            <span className="absolute inset-0 w-full h-full -z-10 bg-[var(--foreground)] -translate-y-full rounded-b-[50%] group-hover:translate-y-0 group-hover:rounded-none transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]"></span>
+                            <span className="relative z-10 overflow-hidden block">
+                                <span className="inline-block transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-[150%]">Book an Intro Call</span>
+                                <span className="absolute inset-0 flex items-center justify-center text-[var(--background)] -translate-y-[150%] transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-0">Book an Intro Call</span>
+                            </span>
                         </Link>
                         <Link href="#portfolio" className="px-8 py-4 bg-transparent border-2 border-[var(--foreground)]/20 text-[var(--foreground)] rounded-full hover:border-[var(--foreground)] transition-all duration-300 font-bold text-center flex items-center justify-center gap-2">
                             View Our Work <ArrowUpRight size={18} />
                         </Link>
                     </motion.div>
                 </div>
+            </div>
 
-                {/* Bottom Marquee (Absolute to stick to bottom of hero) */}
-                <div className="absolute bottom-0 left-0 right-0 border-t border-[var(--foreground)]/10 bg-[var(--background)]/80 backdrop-blur-sm py-4 overflow-hidden">
-                    <div className="flex items-center">
-                        <div className="flex-1 overflow-hidden relative">
-                            <motion.div
-                                animate={{ x: ["0%", "-50%"] }}
-                                transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
-                                className="flex whitespace-nowrap items-center gap-12 px-6 text-[var(--foreground)]/40 font-bold text-xl uppercase tracking-widest"
-                            >
-                                {/* Duplicate set for seamless looping */}
-                                <span>Design Excellence</span> <Circle size={8} />
-                                <span>Scalable Systems</span> <Circle size={8} />
-                                <span>Revenue Focused</span> <Circle size={8} />
-                                <span>Forward Thinking</span> <Circle size={8} />
-                                <span>Pixel Perfect</span> <Circle size={8} />
+            {/* Bottom Marquee (Absolute to stick to bottom of hero, full screen width) */}
+            <div className="absolute bottom-0 left-0 right-0 w-full border-t border-[var(--foreground)]/10 bg-[var(--background)]/80 backdrop-blur-sm py-4 overflow-hidden z-20 group">
+                <div className="flex items-center">
+                    <div className="flex-1 overflow-hidden relative">
+                        <div className="flex w-max animate-marquee hover:[animation-play-state:paused] group-hover:[animation-play-state:paused] whitespace-nowrap items-center gap-12 px-6 text-[var(--foreground)]/40 font-bold text-xl uppercase tracking-widest">
+                            {/* Duplicate set for seamless looping */}
+                            <span>Design Excellence</span>
+                            <span>Scalable Systems</span>
+                            <span>Revenue Focused</span>
+                            <span>Forward Thinking</span>
+                            <span>Pixel Perfect</span>
 
-                                <span>Design Excellence</span> <Circle size={8} />
-                                <span>Scalable Systems</span> <Circle size={8} />
-                                <span>Revenue Focused</span> <Circle size={8} />
-                                <span>Forward Thinking</span> <Circle size={8} />
-                                <span>Pixel Perfect</span> <Circle size={8} />
-                            </motion.div>
+                            <span>Design Excellence</span>
+                            <span>Scalable Systems</span>
+                            <span>Revenue Focused</span>
+                            <span>Forward Thinking</span>
+                            <span>Pixel Perfect</span>
                         </div>
                     </div>
                 </div>
-
             </div>
         </>
     );

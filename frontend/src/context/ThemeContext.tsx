@@ -50,7 +50,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         setMounted(true);
-        const savedTheme = localStorage.getItem('webcraft-theme') as ThemeName | null;
+        const savedTheme = localStorage.getItem('kernalkode-theme') as ThemeName | null;
 
         if (savedTheme && themes.some(t => t.name === savedTheme)) {
             setTheme(savedTheme);
@@ -60,7 +60,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         if (mounted) {
             document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('webcraft-theme', theme);
+            localStorage.setItem('kernalkode-theme', theme);
         }
     }, [theme, mounted]);
 

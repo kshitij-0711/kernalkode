@@ -13,7 +13,7 @@
   --border: #404040;
 
   /* Global 3-Font System */
-  --font-sans: var(--font-roboto);
+  --font-sans: var(--font-nunito);
   --font-serif: var(--font-cormorant);
   --font-mono: var(--font-space-mono);
 }

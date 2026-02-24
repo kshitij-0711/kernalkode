@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 import {
-  Roboto,
+  Nunito,
   Cormorant_Garamond,
   Space_Mono,
 } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
 
-// Primary Sans (Neutral, Clean Grotesque)
-const roboto = Roboto({
+// Primary Sans (Rounded, Clean Geometric)
+const nunito = Nunito({
   subsets: ["latin"],
-  weight: ["100", "300", "400", "500", "700", "900"],
-  variable: "--font-roboto",
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-nunito",
   display: "swap",
 });
 
@@ -32,7 +32,7 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "WebCraft - Premium Web Development",
+  title: "KernalKode - Premium Web Development",
   description: "A full-stack landing page with stunning design variants.",
 };
 
@@ -46,15 +46,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`
-          ${roboto.variable} 
-          ${cormorant.variable}
-          ${spaceMono.variable}
-          antialiased transition-colors duration-300
-        `}
-      >
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${nunito.variable} ${cormorant.variable} ${spaceMono.variable}`}
+    >
+      <body className="antialiased transition-colors duration-300">
         <Providers>
           <ThemeProvider>{children}</ThemeProvider>
         </Providers>

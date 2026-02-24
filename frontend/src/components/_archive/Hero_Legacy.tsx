@@ -127,7 +127,7 @@ function MidnightLuxeHeroV3() {
     return (
         <div className="min-h-screen flex flex-col justify-between bg-[var(--background)] py-24 px-6 relative overflow-hidden">
             <div className="flex justify-between items-start border-b border-[var(--secondary)] border-opacity-20 pb-4 z-10">
-                <span className="text-[var(--primary)] uppercase text-xs tracking-widest">WebCraft Studio</span>
+                <span className="text-[var(--primary)] uppercase text-xs tracking-widest">KernalKode Studio</span>
                 <span className="text-[var(--secondary)] uppercase text-xs tracking-widest">Bespoke Digital</span>
             </div>
 
@@ -249,7 +249,7 @@ function SoftEditorialHeroV3() {
                     We Are
                 </h1>
                 <div className="text-7xl md:text-9xl font-serif text-[var(--primary)] italic mb-8 relative">
-                    WebCraft
+                    KernalKode
                     <span className="absolute -top-4 -right-8 text-2xl font-sans not-italic text-[var(--secondary)] opacity-50">TM</span>
                 </div>
                 <p className="text-xl text-[var(--secondary)] italic font-serif opacity-80">

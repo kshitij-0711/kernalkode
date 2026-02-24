@@ -26,10 +26,10 @@ function ContactLuxe() {
 
                 {/* Left: Content */}
                 <div>
-                    <span className="text-[var(--primary)] text-xs font-mono uppercase tracking-[0.3em] mb-4 block">
+                    <span className="text-[var(--primary)] text-xs font-sans uppercase tracking-[0.3em] font-semibold mb-4 block">
                         Touch Base
                     </span>
-                    <h2 className="text-6xl md:text-8xl font-serif text-[var(--foreground)] mb-8 leading-none">
+                    <h2 className="text-6xl md:text-8xl font-sans font-light text-[var(--foreground)] mb-8 leading-none">
                         Let's <br />
                         <span className="italic text-[var(--secondary)]">Collaborate.</span>
                     </h2>
@@ -39,7 +39,7 @@ function ContactLuxe() {
                     </p>
 
                     <div className="flex flex-col gap-6">
-                        <ContactItem icon={<Mail />} label="Email Us" value="hello@webcraft.com" delay={0.1} />
+                        <ContactItem icon={<Mail />} label="Email Us" value="hello@kernalkode.com" delay={0.1} />
                         <ContactItem icon={<MapPin />} label="Visit Us" value="New York / London / Tokyo" delay={0.2} />
                     </div>
 
@@ -83,7 +83,7 @@ function ContactEditorial() {
         <div className="w-full h-full min-h-screen grid grid-cols-1 md:grid-cols-12 border-t border-[var(--secondary)]/20">
             {/* Title Section */}
             <div className="col-span-1 md:col-span-12 p-12 md:p-24 border-b border-[var(--secondary)]/20 text-center">
-                <h2 className="text-[12vw] leading-[0.8] font-serif text-[var(--foreground)] tracking-tighter">
+                <h2 className="text-[12vw] leading-[0.8] font-sans font-black text-[var(--foreground)] tracking-tighter">
                     CONTACT <span className="text-[var(--secondary)] italic opacity-50">&</span> CONNECT
                 </h2>
             </div>
@@ -95,11 +95,11 @@ function ContactEditorial() {
                     <ul className="space-y-6">
                         <li className="flex flex-col">
                             <span className="text-[var(--secondary)] text-sm uppercase opacity-60 mb-1">Inquiries</span>
-                            <span className="text-[var(--foreground)] text-xl font-serif">hello@webcraft.com</span>
+                            <span className="text-[var(--foreground)] text-xl font-sans font-light">hello@kernalkode.com</span>
                         </li>
                         <li className="flex flex-col">
                             <span className="text-[var(--secondary)] text-sm uppercase opacity-60 mb-1">Careers</span>
-                            <span className="text-[var(--foreground)] text-xl font-serif">join@webcraft.com</span>
+                            <span className="text-[var(--foreground)] text-xl font-sans font-light">join@kernalkode.com</span>
                         </li>
                     </ul>
                 </div>
@@ -198,7 +198,7 @@ function BookingCalendar() {
         <div className="w-full max-w-2xl min-h-[400px]">
             {/* Header / Nav */}
             <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <h3 className="text-2xl font-serif text-[var(--foreground)]">
+                <h3 className="text-2xl font-sans font-light text-[var(--foreground)]">
                     {step === 'date' && (
                         <div className="flex items-center gap-4">
                             <button onClick={handlePrevMonth} className="p-2 hover:bg-[var(--secondary)]/10 rounded-full transition-colors">
@@ -246,7 +246,7 @@ function BookingCalendar() {
                                 key={day}
                                 onClick={() => handleDateClick(day)}
                                 disabled={isPast}
-                                className={`aspect-square flex items-center justify-center text-sm font-mono border transition-all 
+                                className={`aspect-square flex items-center justify-center text-sm font-sans font-medium border transition-all 
                                     ${isPast
                                         ? 'opacity-20 cursor-not-allowed border-transparent text-[var(--foreground)]'
                                         : isSelected
@@ -281,7 +281,7 @@ function BookingCalendar() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="flex flex-col gap-1">
                         <span className="text-xs uppercase tracking-widest text-[var(--primary)]">Selected Slot</span>
-                        <p className="text-xl font-serif text-[var(--foreground)]">{selectedDate?.toDateString()} @ {selectedTime}</p>
+                        <p className="text-xl font-sans font-light text-[var(--foreground)]">{selectedDate?.toDateString()} @ {selectedTime}</p>
                     </div>
 
                     <div className="space-y-4">
@@ -310,8 +310,12 @@ function BookingCalendar() {
                         />
                     </div>
 
-                    <button type="submit" className="w-full py-4 bg-[var(--foreground)] text-[var(--background)] uppercase text-xs font-bold tracking-[0.2em] hover:bg-[var(--primary)] transition-colors mt-8">
-                        Confirm Booking
+                    <button type="submit" className="group relative overflow-hidden w-full py-4 bg-[var(--primary)] text-[var(--background)] uppercase text-xs font-bold tracking-[0.2em] rounded-full mt-8 isolate hover:bg-[var(--primary)]">
+                        <span className="absolute inset-0 w-full h-full -z-10 bg-[var(--foreground)] -translate-y-full rounded-b-[50%] group-hover:translate-y-0 group-hover:rounded-none transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]"></span>
+                        <span className="relative z-10 overflow-hidden block text-center">
+                            <span className="inline-block transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-[150%]">Confirm Booking</span>
+                            <span className="absolute inset-0 flex items-center justify-center text-[var(--background)] -translate-y-[150%] transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-0">Confirm Booking</span>
+                        </span>
                     </button>
                 </form>
             )}
@@ -324,7 +328,7 @@ function BookingCalendar() {
                     className="flex flex-col items-center justify-center text-center py-12 border border-[var(--secondary)]/10 bg-[var(--secondary)]/5"
                 >
                     <CheckCircle size={48} className="text-[var(--primary)] mb-6" />
-                    <h4 className="text-3xl font-serif text-[var(--foreground)] mb-2">Booking Confirmed</h4>
+                    <h4 className="text-3xl font-sans font-light text-[var(--foreground)] mb-2">Booking Confirmed</h4>
                     <p className="text-[var(--secondary)] max-w-sm mx-auto mb-8">
                         We have sent a Google Meet invitation to <span className="text-[var(--primary)]">{formData.email}</span>.
                     </p>

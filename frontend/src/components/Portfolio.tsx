@@ -103,8 +103,12 @@ function PortfolioV1({ projects }: { projects: any[] }) {
                             whileInView={{ y: 0, opacity: 1 }}
                             transition={{ duration: 0.8, delay: 0.4 }}
                         >
-                            <button className="px-8 py-3 border border-white text-white uppercase text-xs tracking-widest hover:bg-white hover:text-black transition-colors">
-                                Discover
+                            <button className="group relative overflow-hidden px-8 py-3 bg-[var(--primary)] text-[var(--background)] rounded-full uppercase text-xs tracking-widest font-semibold isolate hover:bg-[var(--primary)]">
+                                <span className="absolute inset-0 w-full h-full -z-10 bg-[var(--foreground)] -translate-y-full rounded-b-[50%] group-hover:translate-y-0 group-hover:rounded-none transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]"></span>
+                                <span className="relative z-10 overflow-hidden block">
+                                    <span className="inline-block transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-[150%]">Discover</span>
+                                    <span className="absolute inset-0 flex items-center justify-center text-[var(--background)] -translate-y-[150%] transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-0">Discover</span>
+                                </span>
                             </button>
                         </motion.div>
                     </div>
@@ -122,7 +126,7 @@ function PortfolioV2({ projects }: { projects: any[] }) {
     return (
         <div className="py-32 bg-[var(--background)] px-6 min-h-screen">
             <div className="max-w-7xl mx-auto mb-16">
-                <h2 className="text-5xl font-serif text-[var(--foreground)] italic">Selected Works</h2>
+                <h2 className="text-5xl font-sans font-light text-[var(--foreground)] italic">Selected Works</h2>
             </div>
 
             <div className="max-w-[1920px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-0 border-t border-l border-[var(--foreground)] border-opacity-10">
@@ -132,7 +136,7 @@ function PortfolioV2({ projects }: { projects: any[] }) {
                             <span className="text-[var(--primary)] text-xs uppercase tracking-widest mb-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
                                 {project.category}
                             </span>
-                            <h3 className="text-4xl md:text-6xl font-serif text-[var(--foreground)] mb-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">
+                            <h3 className="text-4xl md:text-6xl font-sans font-light text-[var(--foreground)] mb-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">
                                 {project.title}
                             </h3>
                             <button className="w-16 h-16 rounded-full border border-[var(--foreground)] flex items-center justify-center text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-all duration-300 translate-y-4 group-hover:translate-y-0 delay-150">
@@ -163,7 +167,7 @@ function PortfolioV3({ projects }: { projects: any[] }) {
                 {projects.map((project, index) => (
                     <div key={project.id} className={`flex flex-col md:flex-row h-[70vh] w-full border-t border-[var(--secondary)] border-opacity-20 ${index === projects.length - 1 ? 'border-b' : ''}`}>
                         <div className="w-full md:w-1/3 p-12 flex flex-col justify-between border-r border-[var(--secondary)] border-opacity-20 bg-[var(--background)] z-10">
-                            <span className="text-[var(--primary)] font-mono text-xl">0{index + 1}</span>
+                            <span className="text-[var(--primary)] font-sans font-light text-xl">0{index + 1}</span>
                             <div>
                                 <h3 className="text-5xl font-bold uppercase text-[var(--foreground)] mb-2 tracking-tight">{project.title}</h3>
                                 <p className="text-[var(--secondary)] opacity-60 text-sm">{project.category} / {project.year}</p>
