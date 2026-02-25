@@ -57,7 +57,7 @@ export default function FAQ() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="text-4xl md:text-5xl font-bold mb-16 tracking-tight"
+                    className="text-3xl md:text-5xl lg:text-6xl font-sans font-bold mb-16 tracking-tight uppercase text-[var(--foreground)]"
                 >
                     Questions? We got answers.
                 </motion.h2>

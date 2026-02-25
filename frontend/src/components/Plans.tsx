@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
-import Link from 'next/link';
+
 
 const plans = [
     {
@@ -41,7 +41,7 @@ export default function Plans() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-4xl md:text-5xl font-bold text-[var(--foreground)] mb-12 tracking-tight"
+                    className="text-3xl md:text-5xl lg:text-6xl font-sans font-bold text-[var(--foreground)] mb-12 tracking-tight uppercase"
                 >
                     Plans
                 </motion.h2>
@@ -91,8 +91,11 @@ export default function Plans() {
                     <p className="text-[var(--foreground)] text-base md:text-lg mb-8 opacity-90">
                         Let's see how we can fix the issues that are holding you back from driving more revenue today!
                     </p>
-                    <Link
-                        href="#contact"
+                    <button
+                        onClick={(e) => {
+                            e.preventDefault();
+                            document.getElementById('booking-calendar')?.scrollIntoView({ behavior: 'smooth' });
+                        }}
                         className="group relative overflow-hidden px-8 py-3 bg-[var(--primary)] text-[var(--background)] font-semibold rounded-full isolate hover:bg-[var(--primary)] text-center inline-block"
                     >
                         <span className="absolute inset-0 w-full h-full -z-10 bg-[var(--foreground)] -translate-y-full rounded-b-[50%] group-hover:translate-y-0 group-hover:rounded-none transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]"></span>
@@ -100,7 +103,7 @@ export default function Plans() {
                             <span className="inline-block transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-[150%]">Book an Intro Call</span>
                             <span className="absolute inset-0 flex items-center justify-center text-[var(--background)] -translate-y-[150%] transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-0">Book an Intro Call</span>
                         </span>
-                    </Link>
+                    </button>
                 </motion.div>
             </div>
         </section>

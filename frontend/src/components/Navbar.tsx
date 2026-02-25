@@ -31,18 +31,27 @@ export default function Navbar() {
         >
             <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
                 {/* Logo */}
-                <Link href="/" className="group relative z-50">
+                <button
+                    onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="group relative z-50"
+                >
                     <span className="text-2xl md:text-3xl font-sans font-bold tracking-tighter text-[var(--foreground)] mix-blend-difference transition-colors">
                         KernalKode.
                     </span>
-                </Link>
+                </button>
 
                 {/* Desktop Nav */}
                 <div className="hidden md:flex items-center space-x-8">
 
                     {/* CTA Button */}
-                    <Link
-                        href="#contact"
+                    <button
+                        onClick={(e) => {
+                            e.preventDefault();
+                            document.getElementById('booking-calendar')?.scrollIntoView({ behavior: 'smooth' });
+                        }}
                         className="group relative overflow-hidden px-6 py-2.5 bg-[var(--primary)] text-[var(--background)] font-semibold rounded-full isolate hover:bg-[var(--primary)] text-center text-sm inline-block"
                     >
                         <span className="absolute inset-0 w-full h-full -z-10 bg-[var(--foreground)] -translate-y-full rounded-b-[50%] group-hover:translate-y-0 group-hover:rounded-none transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]"></span>
@@ -50,7 +59,7 @@ export default function Navbar() {
                             <span className="inline-block transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-[150%]">Book an Intro Call</span>
                             <span className="absolute inset-0 flex items-center justify-center text-[var(--background)] -translate-y-[150%] transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-0">Book an Intro Call</span>
                         </span>
-                    </Link>
+                    </button>
                 </div>
 
                 {/* Mobile Menu Button */}
@@ -75,9 +84,14 @@ export default function Navbar() {
 
                             {/* CTA Button */}
                             <div className="pt-8">
-                                <Link
-                                    href="#contact"
-                                    onClick={() => setIsMenuOpen(false)}
+                                <button
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setIsMenuOpen(false);
+                                        setTimeout(() => {
+                                            document.getElementById('booking-calendar')?.scrollIntoView({ behavior: 'smooth' });
+                                        }, 100);
+                                    }}
                                     className="group relative overflow-hidden px-10 py-4 bg-[var(--primary)] text-[var(--background)] font-semibold rounded-full isolate hover:bg-[var(--primary)] text-center text-xl inline-block w-full"
                                 >
                                     <span className="absolute inset-0 w-full h-full -z-10 bg-[var(--foreground)] -translate-y-full rounded-b-[50%] group-hover:translate-y-0 group-hover:rounded-none transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]"></span>
@@ -85,7 +99,7 @@ export default function Navbar() {
                                         <span className="inline-block transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-[150%]">Book an Intro Call</span>
                                         <span className="absolute inset-0 flex items-center justify-center text-[var(--background)] -translate-y-[150%] transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-0">Book an Intro Call</span>
                                     </span>
-                                </Link>
+                                </button>
                             </div>
                         </div>
                     </motion.div>

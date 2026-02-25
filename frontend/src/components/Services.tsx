@@ -60,10 +60,10 @@ export default function Services() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                                className="text-5xl md:text-7xl lg:text-8xl font-sans font-black tracking-tighter text-[var(--foreground)] uppercase leading-[0.9] mb-8"
+                                className="text-3xl md:text-5xl lg:text-6xl font-sans font-bold text-[var(--foreground)] tracking-tight uppercase leading-[1.2] mb-8"
                             >
                                 What<br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--primary)] to-[var(--foreground)]">We Do</span>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--primary)] to-[var(--foreground)] mt-2 block">We Do</span>
                             </motion.h2>
 
                             <motion.p

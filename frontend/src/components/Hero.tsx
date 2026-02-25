@@ -68,15 +68,15 @@ function HeroEditorial() {
 
 
 
-                <div className="mt-20 md:mt-0 max-w-5xl">
+                <div className="mt-20 md:mt-0 w-full">
                     {/* Massive Left-Aligned Headline */}
                     <motion.h1
                         initial={{ y: 30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                        className="text-4xl md:text-5xl lg:text-[4rem] leading-[1.1] font-sans font-bold tracking-tighter text-[var(--foreground)] mb-8 max-w-5xl"
+                        className="text-3xl md:text-4xl lg:text-5xl leading-[1.2] font-sans font-bold tracking-tight text-[var(--foreground)] mb-8 max-w-none uppercase w-full"
                     >
-                        We help businesses increase revenue
+                        We help businesses increase revenue<br className="hidden md:block" />
                         through strategy-driven websites.
                     </motion.h1>
 
@@ -113,16 +113,28 @@ function HeroEditorial() {
                         transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                         className="flex flex-col sm:flex-row gap-4 items-center"
                     >
-                        <Link href="#contact" className="group relative overflow-hidden px-8 py-4 bg-[var(--primary)] text-[var(--background)] rounded-full font-semibold text-center isolate hover:bg-[var(--primary)] inline-block">
+                        <button
+                            onClick={(e) => {
+                                e.preventDefault();
+                                document.getElementById('booking-calendar')?.scrollIntoView({ behavior: 'smooth' });
+                            }}
+                            className="group relative overflow-hidden px-8 py-4 bg-[var(--primary)] text-[var(--background)] rounded-full font-semibold text-center isolate hover:bg-[var(--primary)] inline-block"
+                        >
                             <span className="absolute inset-0 w-full h-full -z-10 bg-[var(--foreground)] -translate-y-full rounded-b-[50%] group-hover:translate-y-0 group-hover:rounded-none transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]"></span>
                             <span className="relative z-10 overflow-hidden block">
                                 <span className="inline-block transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-[150%]">Book an Intro Call</span>
                                 <span className="absolute inset-0 flex items-center justify-center text-[var(--background)] -translate-y-[150%] transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-0">Book an Intro Call</span>
                             </span>
-                        </Link>
-                        <Link href="#portfolio" className="px-8 py-4 bg-transparent border-2 border-[var(--foreground)]/20 text-[var(--foreground)] rounded-full hover:border-[var(--foreground)] transition-all duration-300 font-bold text-center flex items-center justify-center gap-2">
+                        </button>
+                        <button
+                            onClick={(e) => {
+                                e.preventDefault();
+                                document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
+                            }}
+                            className="px-8 py-4 bg-transparent border-2 border-[var(--foreground)]/20 text-[var(--foreground)] rounded-full hover:border-[var(--foreground)] transition-all duration-300 font-bold text-center flex items-center justify-center gap-2"
+                        >
                             View Our Work <ArrowUpRight size={18} />
-                        </Link>
+                        </button>
                     </motion.div>
                 </div>
             </div>

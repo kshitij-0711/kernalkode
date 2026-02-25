@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from '@/context/ThemeContext';
 import { motion } from 'framer-motion';
 import Cal, { getCalApi } from "@calcom/embed-react";
@@ -42,12 +42,12 @@ function ContactLuxe() {
                             Touch Base
                         </span>
                         <h2 className="text-6xl md:text-8xl font-sans font-light text-[var(--foreground)] mb-8 leading-none">
-                            Let's <br />
+                            Let&apos;s <br />
                             <span className="italic text-[var(--secondary)]">Collaborate.</span>
                         </h2>
                         <p className="text-[var(--secondary)] text-lg font-light leading-relaxed mb-12 max-w-md opacity-80">
                             We are currently accepting new projects for Q3 2024.
-                            Let's build something extraordinary together.
+                            Let&apos;s build something extraordinary together.
                         </p>
                     </div>
 
@@ -82,13 +82,12 @@ import { ChevronLeft, ChevronRight, Calendar, Clock, User, CheckCircle } from 'l
 // Soft Editorial Contact (Light/Magazine/Structured)
 // ============================================================================
 function ContactEditorial() {
-
     return (
         <div className="w-full h-full min-h-screen grid grid-cols-1 md:grid-cols-12 border-t border-[var(--secondary)]/20">
             {/* Title Section */}
-            <div className="col-span-1 md:col-span-12 p-12 md:p-24 border-b border-[var(--secondary)]/20 text-center">
-                <h2 className="text-[12vw] leading-[0.8] font-sans font-black text-[var(--foreground)] tracking-tighter">
-                    CONTACT <span className="text-[var(--secondary)] italic opacity-50">&</span> CONNECT
+            <div className="col-span-1 md:col-span-12 py-16 px-6 border-b border-[var(--secondary)]/20 text-center">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-sans font-bold text-[var(--foreground)] tracking-tight">
+                    CONTACT <span className="text-[var(--secondary)] opacity-50 mx-2 font-bold">&</span> CONNECT
                 </h2>
             </div>
 
@@ -104,17 +103,10 @@ function ContactEditorial() {
                     <ul className="space-y-6 md:space-y-0 md:flex md:gap-16">
                         <li className="flex flex-col group cursor-pointer w-fit">
                             <span className="text-[var(--secondary)] text-sm uppercase opacity-60 mb-1">Inquiries</span>
-                            <div className="relative w-fit">
+                            <a href="mailto:hello@kernalkode.com" className="relative w-fit block">
                                 <span className="text-[var(--foreground)] text-xl font-sans font-light">hello@kernalkode.com</span>
                                 <span className="absolute left-0 -bottom-0.5 w-0 h-[1px] bg-[var(--foreground)] transition-all duration-500 group-hover:w-full"></span>
-                            </div>
-                        </li>
-                        <li className="flex flex-col group cursor-pointer w-fit">
-                            <span className="text-[var(--secondary)] text-sm uppercase opacity-60 mb-1">Careers</span>
-                            <div className="relative w-fit">
-                                <span className="text-[var(--foreground)] text-xl font-sans font-light">join@kernalkode.com</span>
-                                <span className="absolute left-0 -bottom-0.5 w-0 h-[1px] bg-[var(--foreground)] transition-all duration-500 group-hover:w-full"></span>
-                            </div>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -122,14 +114,14 @@ function ContactEditorial() {
                 <div className="mt-12 md:mt-0">
                     <span className="text-[var(--primary)] font-bold text-xs uppercase tracking-widest mb-4 md:mb-8 block md:text-right">Follow</span>
                     <div className="flex gap-6 md:justify-end">
-                        <Link href="#" className="relative group text-[var(--foreground)] text-lg w-fit">
+                        <button onClick={(e) => e.preventDefault()} className="relative group text-[var(--foreground)] text-lg w-fit">
                             <span>Instagram</span>
                             <span className="absolute left-0 -bottom-0.5 w-0 h-[1px] bg-[var(--foreground)] transition-all duration-500 group-hover:w-full"></span>
-                        </Link>
-                        <Link href="#" className="relative group text-[var(--foreground)] text-lg w-fit">
+                        </button>
+                        <button onClick={(e) => e.preventDefault()} className="relative group text-[var(--foreground)] text-lg w-fit">
                             <span>LinkedIn</span>
                             <span className="absolute left-0 -bottom-0.5 w-0 h-[1px] bg-[var(--foreground)] transition-all duration-500 group-hover:w-full"></span>
-                        </Link>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -156,7 +148,7 @@ function BookingCalendar() {
     }, []);
 
     return (
-        <div className="cal-inline-container w-full h-full min-h-[600px] flex items-center justify-center" style={{ overflow: 'hidden' }}>
+        <div id="booking-calendar" className="cal-inline-container w-full h-full min-h-[600px] flex items-center justify-center" style={{ overflow: 'hidden' }}>
             <Cal
                 namespace="30min"
                 calLink="gothamsbat/30min"
@@ -170,31 +162,56 @@ function BookingCalendar() {
 // ... (ContactItem & SocialButton remain unchanged)
 
 function ContactItem({ icon, label, value, delay }: { icon: React.ReactNode, label: string, value: string, delay: number }) {
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay, duration: 0.5 }}
-            className="flex items-center gap-6 group cursor-pointer"
-        >
+    const [copied, setCopied] = useState(false);
+    const isEmail = value.includes('@');
+
+    const handleCopy = () => {
+        if (isEmail) return;
+        navigator.clipboard.writeText(value);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
+
+    const content = (
+        <>
             <div className="w-12 h-12 rounded-full border border-[var(--secondary)]/20 flex items-center justify-center text-[var(--primary)] group-hover:bg-[var(--primary)] group-hover:text-[var(--background)] transition-all duration-300">
                 {icon}
             </div>
             <div>
                 <span className="block text-xs uppercase tracking-widest text-[var(--secondary)] opacity-60 mb-1">{label}</span>
                 <div className="relative w-fit">
-                    <span className="text-[var(--foreground)] text-lg">{value}</span>
+                    <span className="text-[var(--foreground)] text-lg">{copied ? "Copied!" : value}</span>
                     <span className="absolute left-0 -bottom-0.5 w-0 h-[1px] bg-[var(--foreground)] transition-all duration-500 group-hover:w-full"></span>
                 </div>
             </div>
+        </>
+    );
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay, duration: 0.5 }}
+            className="group cursor-pointer"
+            onClick={handleCopy}
+        >
+            {isEmail ? (
+                <a href={`mailto:${value}`} className="flex items-center gap-6">
+                    {content}
+                </a>
+            ) : (
+                <div className="flex items-center gap-6">
+                    {content}
+                </div>
+            )}
         </motion.div>
     );
 }
 
 function SocialButton({ icon }: { icon: React.ReactNode }) {
     return (
-        <a href="#" className="w-10 h-10 flex items-center justify-center border border-[var(--secondary)]/20 rounded-full text-[var(--foreground)] hover:border-[var(--primary)] hover:text-[var(--primary)] transition-all">
+        <button onClick={(e) => e.preventDefault()} className="w-10 h-10 flex items-center justify-center border border-[var(--secondary)]/20 rounded-full text-[var(--foreground)] hover:border-[var(--primary)] hover:text-[var(--primary)] transition-all">
             {icon}
-        </a>
+        </button>
     )
 }
