@@ -18,17 +18,6 @@
   --font-mono: var(--font-space-mono);
 }
 
-/* Midnight Luxe */
-[data-theme='midnight-luxe'] {
-  --background: #050505;
-  --foreground: #F2F2F2;
-  --primary: #D4AF37;
-  --secondary: #F2F2F2;
-  --accent: #D4AF37;
-  --muted: #2d2d2d;
-  --border: #F2F2F2;
-  /* Fonts remain global */
-}
 
 
 /* Soft Editorial (Dark Mode) */

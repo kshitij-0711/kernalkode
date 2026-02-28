@@ -39,7 +39,7 @@ export default function Navbar() {
                     className="group relative z-50"
                 >
                     <span className="text-2xl md:text-3xl font-sans font-bold tracking-tighter text-[var(--foreground)] mix-blend-difference transition-colors">
-                        KernalKode.
+                        Boring.
                     </span>
                 </button>
 

@@ -32,7 +32,7 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KernalKode - Premium Web Development",
+  title: "BoringStudious - Premium Web Development",
   description: "A full-stack landing page with stunning design variants.",
 };
 

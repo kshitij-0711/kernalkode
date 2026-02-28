@@ -50,13 +50,6 @@ export default function Services() {
 
     return (
         <section id="services" className="min-h-screen transition-colors duration-500">
-            {theme === 'midnight-luxe' && (
-                <>
-                    {variant === 'v1' && <MidnightLuxeServicesV1 services={services} />}
-                    {variant === 'v2' && <MidnightLuxeServicesV2 services={services} />}
-                    {variant === 'v3' && <MidnightLuxeServicesV3 services={services} />}
-                </>
-            )}
             {theme === 'soft-editorial' && (
                 <>
                     {variant === 'v1' && <SoftEditorialServicesV1 services={services} />}
@@ -65,112 +58,6 @@ export default function Services() {
                 </>
             )}
         </section>
-    );
-}
-
-// --- MIDNIGHT LUXE VARIANTS ---
-
-// V1: Grid Layout (Minimal Borders)
-function MidnightLuxeServicesV1({ services }: { services: any[] }) {
-    return (
-        <div className="w-full py-24 bg-[var(--background)] px-6">
-            <div className="max-w-7xl mx-auto">
-                <div className="mb-20 border-b border-[var(--secondary)] border-opacity-20 pb-8 flex justify-between items-end">
-                    <div>
-                        <span className="text-[var(--primary)] text-xs tracking-[0.3em] uppercase mb-4 block">Expertise</span>
-                        <h2 className="text-5xl md:text-7xl font-serif text-[var(--foreground)]">Capabilities</h2>
-                    </div>
-                    <div className="text-[var(--secondary)] font-mono text-sm opacity-60 hidden md:block">
-                        / 002
-                    </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--secondary)] bg-opacity-10 border border-[var(--secondary)] border-opacity-10">
-                    {services.map((service, index) => (
-                        <div key={service.id} className="bg-[var(--background)] p-12 group hover:bg-[var(--secondary)] hover:bg-opacity-5 transition-colors duration-500 relative">
-                            <span className="text-[var(--secondary)] font-mono text-xs opacity-40 mb-8 block">0{index + 1}</span>
-                            <h3 className="text-3xl font-serif text-[var(--foreground)] mb-4 group-hover:text-[var(--primary)] transition-colors">{service.title}</h3>
-                            <p className="text-[var(--secondary)] font-light opacity-70 max-w-sm leading-relaxed">{service.description}</p>
-
-                            <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-[var(--primary)]">
-                                <ArrowUpRight size={24} />
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
-    );
-}
-
-// V2: Horizontal List (Accordion-like feel)
-function MidnightLuxeServicesV2({ services }: { services: any[] }) {
-    return (
-        <div className="w-full py-32 bg-[var(--background)] px-6">
-            <div className="max-w-6xl mx-auto">
-                <h2 className="text-4xl md:text-6xl font-serif text-[var(--foreground)] mb-16 text-center">
-                    Services <span className="text-[var(--primary)]">.</span>
-                </h2>
-
-                <div className="flex flex-col">
-                    {services.map((service, index) => (
-                        <div key={service.id} className="group border-b border-[var(--secondary)] border-opacity-20 py-10 flex flex-col md:flex-row items-center justify-between hover:bg-[var(--secondary)] hover:bg-opacity-[0.02] transition-colors cursor-pointer px-4">
-                            <div className="flex items-baseline gap-8 md:w-1/3">
-                                <span className="text-[var(--primary)] font-mono text-sm">0{index + 1}</span>
-                                <h3 className="text-3xl font-serif text-[var(--foreground)] group-hover:translate-x-2 transition-transform duration-300">{service.title}</h3>
-                            </div>
-
-                            <p className="text-[var(--secondary)] font-light opacity-0 md:opacity-0 md:group-hover:opacity-60 transition-opacity duration-500  md:w-1/3 text-center mt-4 md:mt-0">
-                                {service.description}
-                            </p>
-
-                            <div className="md:w-1/3 flex justify-end mt-4 md:mt-0">
-                                <div className="w-12 h-12 rounded-full border border-[var(--secondary)] border-opacity-30 flex items-center justify-center group-hover:border-[var(--primary)] group-hover:text-[var(--primary)] transition-all">
-                                    <ArrowUpRight size={18} />
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
-    );
-}
-
-// V3: Interactive Cards (Hover Focus)
-function MidnightLuxeServicesV3({ services }: { services: any[] }) {
-    return (
-        <div className="w-full py-24 bg-[var(--background)] px-6">
-            <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div className="lg:col-span-2 flex flex-col justify-center pr-12 mb-12 lg:mb-0">
-                        <span className="text-[var(--primary)] text-xs tracking-widest uppercase mb-4">Our Craft</span>
-                        <h2 className="text-5xl font-serif text-[var(--foreground)] mb-6 leading-tight">
-                            Redefining <br /> <span className="italic text-[var(--secondary)] opacity-60">Possibility</span>
-                        </h2>
-                        <p className="text-[var(--secondary)] opacity-70 font-light">
-                            We offer a bespoke suite of digital services designed to elevate your brand to the highest echelon.
-                        </p>
-                    </div>
-
-                    {services.map((service, index) => (
-                        <div key={service.id} className="min-h-[300px] border border-[var(--secondary)] border-opacity-20 p-8 flex flex-col justify-between hover:border-[var(--primary)] hover:-translate-y-2 transition-all duration-300 bg-[var(--background)] group shadow-2xl shadow-transparent hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
-                            <div className="flex justify-between items-start">
-                                <span className="text-[var(--secondary)] font-mono text-xs opacity-50">/ 0{index + 1}</span>
-                                <div className="w-2 h-2 bg-[var(--primary)] rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                            </div>
-
-                            <div>
-                                <h3 className="text-2xl font-serif text-[var(--foreground)] mb-4">{service.title}</h3>
-                                <p className="text-[var(--secondary)] text-sm opacity-60 leading-relaxed group-hover:opacity-90 transition-opacity">
-                                    {service.description}
-                                </p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
     );
 }
 

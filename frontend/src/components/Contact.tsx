@@ -1,72 +1,16 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useTheme } from '@/context/ThemeContext';
 import { motion } from 'framer-motion';
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { ArrowUpRight, Mail, MapPin, Instagram, Linkedin, Twitter } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Contact() {
-    const { theme } = useTheme();
-
     return (
         <section id="contact" className="min-h-screen relative bg-[var(--background)] overflow-hidden flex items-center">
-            {theme === 'midnight-luxe' ? <ContactLuxe /> : <ContactEditorial />}
+            <ContactEditorial />
         </section>
-    );
-}
-
-// ============================================================================
-// Midnight Luxe Contact (Dark/Gold/Premium)
-// ============================================================================
-function ContactLuxe() {
-    return (
-        <div className="w-full max-w-7xl mx-auto px-6 py-20 relative z-10">
-            <div className="flex flex-col gap-16 md:gap-24">
-
-                {/* Top: Calendar */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1 }}
-                    className="w-full relative mix-blend-screen"
-                >
-                    <BookingCalendar />
-                </motion.div>
-
-                {/* Bottom: Content */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-                    <div>
-                        <span className="text-[var(--primary)] text-xs font-sans uppercase tracking-[0.3em] font-semibold mb-4 block">
-                            Touch Base
-                        </span>
-                        <h2 className="text-6xl md:text-8xl font-sans font-light text-[var(--foreground)] mb-8 leading-none">
-                            Let&apos;s <br />
-                            <span className="italic text-[var(--secondary)]">Collaborate.</span>
-                        </h2>
-                        <p className="text-[var(--secondary)] text-lg font-light leading-relaxed mb-12 max-w-md opacity-80">
-                            We are currently accepting new projects for Q3 2024.
-                            Let&apos;s build something extraordinary together.
-                        </p>
-                    </div>
-
-                    <div className="flex flex-col md:items-end justify-center h-full">
-                        <div className="flex flex-col gap-6 md:items-end w-full">
-                            <ContactItem icon={<Mail />} label="Email Us" value="hello@kernalkode.com" delay={0.1} />
-                            <ContactItem icon={<MapPin />} label="Visit Us" value="New York / London / Tokyo" delay={0.2} />
-                        </div>
-
-                        <div className="mt-12 flex gap-4 md:justify-end">
-                            <SocialButton icon={<Instagram size={20} />} />
-                            <SocialButton icon={<Linkedin size={20} />} />
-                            <SocialButton icon={<Twitter size={20} />} />
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
     );
 }
 
@@ -87,7 +31,11 @@ function ContactEditorial() {
             {/* Title Section */}
             <div className="col-span-1 md:col-span-12 py-16 px-6 border-b border-[var(--secondary)]/20 text-center">
                 <h2 className="text-3xl md:text-5xl lg:text-6xl font-sans font-bold text-[var(--foreground)] tracking-tight">
-                    CONTACT <span className="text-[var(--secondary)] opacity-50 mx-2 font-bold">&</span> CONNECT
+                    CONTACT{" "}
+                    <span className="text-[var(--secondary)] opacity-50 mx-2 font-bold">
+                        &
+                    </span>{" "}
+                    CONNECT
                 </h2>
             </div>
 
@@ -99,12 +47,21 @@ function ContactEditorial() {
             {/* Info Col */}
             <div className="col-span-1 md:col-span-12 p-12 flex flex-col md:flex-row justify-between items-start md:items-center bg-[var(--secondary)]/5">
                 <div>
-                    <span className="text-[var(--primary)] font-bold text-xs uppercase tracking-widest mb-8 block">Directory</span>
+                    <span className="text-[var(--primary)] font-bold text-xs uppercase tracking-widest mb-8 block">
+                        Directory
+                    </span>
                     <ul className="space-y-6 md:space-y-0 md:flex md:gap-16">
                         <li className="flex flex-col group cursor-pointer w-fit">
-                            <span className="text-[var(--secondary)] text-sm uppercase opacity-60 mb-1">Inquiries</span>
-                            <a href="mailto:hello@kernalkode.com" className="relative w-fit block">
-                                <span className="text-[var(--foreground)] text-xl font-sans font-light">hello@kernalkode.com</span>
+                            <span className="text-[var(--secondary)] text-sm uppercase opacity-60 mb-1">
+                                Inquiries
+                            </span>
+                            <a
+                                href="mailto:kshitij@boringstudious.pro"
+                                className="relative w-fit block"
+                            >
+                                <span className="text-[var(--foreground)] text-xl font-sans font-light">
+                                    kshitij@boringstudious.pro
+                                </span>
                                 <span className="absolute left-0 -bottom-0.5 w-0 h-[1px] bg-[var(--foreground)] transition-all duration-500 group-hover:w-full"></span>
                             </a>
                         </li>
@@ -112,13 +69,21 @@ function ContactEditorial() {
                 </div>
 
                 <div className="mt-12 md:mt-0">
-                    <span className="text-[var(--primary)] font-bold text-xs uppercase tracking-widest mb-4 md:mb-8 block md:text-right">Follow</span>
+                    <span className="text-[var(--primary)] font-bold text-xs uppercase tracking-widest mb-4 md:mb-8 block md:text-right">
+                        Follow
+                    </span>
                     <div className="flex gap-6 md:justify-end">
-                        <button onClick={(e) => e.preventDefault()} className="relative group text-[var(--foreground)] text-lg w-fit">
+                        <button
+                            onClick={(e) => e.preventDefault()}
+                            className="relative group text-[var(--foreground)] text-lg w-fit"
+                        >
                             <span>Instagram</span>
                             <span className="absolute left-0 -bottom-0.5 w-0 h-[1px] bg-[var(--foreground)] transition-all duration-500 group-hover:w-full"></span>
                         </button>
-                        <button onClick={(e) => e.preventDefault()} className="relative group text-[var(--foreground)] text-lg w-fit">
+                        <button
+                            onClick={(e) => e.preventDefault()}
+                            className="relative group text-[var(--foreground)] text-lg w-fit"
+                        >
                             <span>LinkedIn</span>
                             <span className="absolute left-0 -bottom-0.5 w-0 h-[1px] bg-[var(--foreground)] transition-all duration-500 group-hover:w-full"></span>
                         </button>

@@ -2,9 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-export type ThemeName =
-    | 'midnight-luxe'
-    | 'soft-editorial';
+export type ThemeName = 'soft-editorial';
 
 
 export interface ThemeInfo {
@@ -15,12 +13,6 @@ export interface ThemeInfo {
 }
 
 export const themes: ThemeInfo[] = [
-    {
-        name: 'midnight-luxe',
-        label: 'Midnight Luxe',
-        description: 'Refined elegance with gold accents',
-        vibe: '🌙 Luxury',
-    },
     {
         name: 'soft-editorial',
         label: 'Soft Editorial',
@@ -50,7 +42,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         setMounted(true);
-        const savedTheme = localStorage.getItem('kernalkode-theme') as ThemeName | null;
+        const savedTheme = localStorage.getItem('boring-theme') as ThemeName | null;
 
         if (savedTheme && themes.some(t => t.name === savedTheme)) {
             setTheme(savedTheme);
@@ -60,7 +52,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         if (mounted) {
             document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('kernalkode-theme', theme);
+            localStorage.setItem('boring-theme', theme);
         }
     }, [theme, mounted]);
 
