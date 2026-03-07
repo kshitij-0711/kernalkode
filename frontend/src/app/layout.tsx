@@ -32,7 +32,7 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://boringstudious.com'),
+  metadataBase: new URL('https://www.boringstudios.pro'),
   title: {
     default: "BoringStudious - Premium Web Development",
     template: "%s | BoringStudious",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "BoringStudious - Premium Web Development",
     description: "A full-stack landing page with stunning design variants for premium web development services.",
-    url: "https://boringstudious.com",
+    url: "https://www.boringstudios.pro",
     siteName: "BoringStudious",
     images: [
       {
@@ -91,9 +91,9 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://boringstudious.com',
+    canonical: 'https://www.boringstudios.pro',
     languages: {
-      'en-US': 'https://boringstudious.com/en-US',
+      'en-US': 'https://www.boringstudios.pro/en-US',
     },
   },
 };

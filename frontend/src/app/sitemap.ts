@@ -1,7 +1,7 @@
-import { MetadataRoute } from 'next';
+     import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://boringstudious.com'; // Replace with the actual production domain if different
+  const baseUrl = 'https://www.boringstudios.pro'; // Replace with the actual production domain if different
 
   return [
     {
