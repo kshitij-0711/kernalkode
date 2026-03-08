@@ -38,7 +38,7 @@ export default function Navbar() {
                     }}
                     className="group relative z-50"
                 >
-                    <span className="text-2xl md:text-3xl font-sans font-bold tracking-tighter text-[var(--foreground)] mix-blend-difference transition-colors">
+                    <span className="text-3xl md:text-4xl font-sans font-black tracking-tighter text-[var(--foreground)] mix-blend-difference transition-colors">
                         Boring.
                     </span>
                 </button>

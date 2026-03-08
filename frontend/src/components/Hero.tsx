@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 export default function Hero() {
     return (
-        <section id="hero" className="min-h-screen relative bg-[var(--background)] overflow-hidden flex flex-col pt-24">
+        <section id="hero" className="min-h-screen relative bg-[var(--background)] overflow-hidden flex flex-col pt-24 select-none">
             <HeroEditorial />
         </section>
     );
