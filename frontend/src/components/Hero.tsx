@@ -74,7 +74,7 @@ function HeroEditorial() {
                         initial={{ y: 30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                        className="text-3xl md:text-4xl lg:text-5xl leading-[1.2] font-sans font-bold tracking-tight text-[var(--foreground)] mb-8 max-w-none uppercase w-full"
+                        className="text-3xl md:text-4xl lg:text-5xl leading-[1.2] font-excon font-bold tracking-tight text-[var(--foreground)] mb-8 max-w-none uppercase w-full"
                     >
                         We help businesses increase revenue<br className="hidden md:block" />
                         through strategy-driven websites.

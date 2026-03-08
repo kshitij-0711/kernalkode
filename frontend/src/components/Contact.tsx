@@ -30,7 +30,7 @@ function ContactEditorial() {
         <div className="w-full h-full min-h-screen grid grid-cols-1 md:grid-cols-12 border-t border-[var(--secondary)]/20">
             {/* Title Section */}
             <div className="col-span-1 md:col-span-12 py-16 px-6 border-b border-[var(--secondary)]/20 text-center">
-                <h2 className="text-3xl md:text-5xl lg:text-6xl font-sans font-bold text-[var(--foreground)] tracking-tight">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-excon font-bold text-[var(--foreground)] tracking-tight">
                     CONTACT{" "}
                     <span className="text-[var(--secondary)] opacity-50 mx-2 font-bold">
                         &

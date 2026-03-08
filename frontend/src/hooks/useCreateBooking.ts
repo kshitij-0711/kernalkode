@@ -15,7 +15,7 @@ export const useCreateBooking = () => {
 
     return useMutation({
         mutationFn: async (data: BookingData) => {
-            const response = await fetch('http://localhost:5000/api/bookings', {
+            const response = await fetch('http://localhost:5001/api/bookings', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data),

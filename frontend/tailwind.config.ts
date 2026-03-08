@@ -21,6 +21,7 @@ const config: Config = {
                 sans: ["var(--font-sans)", "sans-serif"],
                 serif: ["var(--font-serif)", "serif"],
                 mono: ["var(--font-mono)", "monospace"],
+                excon: ["var(--font-excon)"],
             },
             keyframes: {
                 marquee: {

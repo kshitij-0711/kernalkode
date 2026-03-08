@@ -41,7 +41,7 @@ export default function Plans() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-3xl md:text-5xl lg:text-6xl font-sans font-bold text-[var(--foreground)] mb-12 tracking-tight uppercase"
+                    className="text-3xl md:text-5xl lg:text-6xl font-excon font-bold text-[var(--foreground)] mb-12 tracking-tight uppercase"
                 >
                     Plans
                 </motion.h2>
