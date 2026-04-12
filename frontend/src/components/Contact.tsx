@@ -77,7 +77,8 @@ function ContactEditorial() {
                             onClick={(e) => e.preventDefault()}
                             className="relative group text-[var(--foreground)] text-lg w-fit"
                         >
-                            <span>Instagram</span>
+                            {/* <span>X</span> */}
+                            
                             <span className="absolute left-0 -bottom-0.5 w-0 h-[1px] bg-[var(--foreground)] transition-all duration-500 group-hover:w-full"></span>
                         </button>
                         <button
