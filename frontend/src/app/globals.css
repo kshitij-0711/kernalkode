@@ -1,63 +1,103 @@
-@import url('https://api.fontshare.com/v2/css?f[]=excon@500&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  /* Default: Soft Editorial (Dark Mode) */
-  --background: #1A1A1A;
-  --foreground: #E6E6E6;
-  --primary: #C17C74;
-  --secondary: #E6E6E6;
-  --accent: #C17C74;
-  --muted: #404040;
-  --border: #404040;
+@layer base {
+  :root {
+    --bg: #0f0f0f;
+    --text: #f0ede8;
+    --text-muted: rgba(240, 237, 232, 0.45);
+    --border: rgba(240, 237, 232, 0.08);
+    --border-hover: rgba(240, 237, 232, 0.25);
+  }
 
-  /* Global 3-Font System */
-  --font-sans: var(--font-nunito);
-  --font-serif: var(--font-cormorant);
-  --font-mono: var(--font-space-mono);
-  --font-excon: 'Excon', sans-serif;
+  :root[data-theme="dark"] {
+    --bg: #0f0f0f;
+    --text: #f0ede8;
+    --text-muted: rgba(240, 237, 232, 0.45);
+    --border: rgba(240, 237, 232, 0.08);
+    --border-hover: rgba(240, 237, 232, 0.25);
+  }
+
+  :root[data-theme="light"] {
+    --bg: #f5f4f0;
+    --text: #111110;
+    --text-muted: rgba(17, 17, 16, 0.45);
+    --border: rgba(17, 17, 16, 0.08);
+    --border-hover: rgba(17, 17, 16, 0.25);
+  }
+
+  html, body {
+    @apply m-0 p-0 overscroll-none scroll-smooth;
+    background-color: var(--bg);
+    color: var(--text);
+    /* For Lenis */
+    height: auto;
+    letter-spacing: -0.02em;
+  }
+  
+  /* Disable tailwind auto transition if it exists by default */
+  .transition-colors {
+    transition-duration: 300ms;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
 
-
-
-/* Soft Editorial (Dark Mode) */
-[data-theme='soft-editorial'] {
-  --background: #1A1A1A;
-  --foreground: #E6E6E6;
-  --primary: #C17C74;
-  --secondary: #E6E6E6;
-  --accent: #C17C74;
-  --muted: #404040;
-  --border: #404040;
-  /* Fonts remain global */
+/* Custom Cursor Rules */
+* {
+  cursor: none !important;
 }
 
-html {
-  scroll-behavior: smooth;
+/* Split text basic rules for avoiding reflow */
+.split-parent {
+  overflow: hidden;
+}
+.split-child {
+  display: inline-block;
+  transform: translateY(100%);
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-sans);
-  transition: background-color 0.3s ease, color 0.3s ease;
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+/* Base custom cursor styles */
+#custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: var(--text);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  will-change: transform, width, height, border, background-color;
+  transition: width 0.15s ease, height 0.15s ease, background-color 0.15s ease, border 0.15s ease;
+  transform: translate(-50%, -50%);
+}
+
+#custom-cursor.hover {
+  width: 44px;
+  height: 44px;
+  background-color: transparent !important;
+  border: 1px solid var(--text);
+}
+
+/* Remove default scrollbar to give a seamless app feel */
+::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 /* ── Hide Cal.com embed scrollbar by clipping ── */
-/* The wrapper clips overflow so the iframe scrollbar is hidden */
 .cal-inline-container {
   overflow: hidden !important;
   position: relative;
 }
 
-/* Push iframe right-edge scrollbar outside the visible container */
 cal-inline,
 .cal-inline-container cal-inline {
   width: calc(100% + 20px) !important;
@@ -69,7 +109,6 @@ cal-inline iframe,
   width: calc(100% + 20px) !important;
 }
 
-/* Global scrollbar hide as fallback */
 cal-inline::-webkit-scrollbar,
 cal-inline iframe::-webkit-scrollbar,
 iframe[src*="cal.com"]::-webkit-scrollbar {

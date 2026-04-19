@@ -1,22 +1,25 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import Portfolio from "@/components/Portfolio";
-import Plans from "@/components/Plans";
-import FAQ from "@/components/FAQ";
-import Contact from "@/components/Contact";
-import ScrollRestoration from "@/components/ScrollRestoration";
+import Preloader from '@/components/Preloader';
+import Navigation from '@/components/Navigation';
+import Hero from '@/components/Hero';
+import Marquee from '@/components/Marquee';
+import Work from '@/components/Work';
+import Services from '@/components/Services';
+import Pricing from '@/components/Pricing';
+import FAQ from '@/components/FAQ';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[var(--background)] transition-colors duration-500">
-      <ScrollRestoration />
-      <Navbar />
+    <main className="relative w-full min-h-screen">
+      <Preloader />
+      <Navigation />
       <Hero />
+      <Marquee />
+      <Work />
       <Services />
-      <Plans />
+      <Pricing />
       <FAQ />
-      <Contact />
+      <Footer />
     </main>
   );
 }
