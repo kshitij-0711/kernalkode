@@ -33,6 +33,18 @@ function BookingCalendar() {
 
 export default function Footer() {
     const [timeString, setTimeString] = useState('');
+    const [phoneCopied, setPhoneCopied] = useState(false);
+
+    const handlePhoneClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        // On desktop, copy to clipboard; on mobile, let tel: link open dialer
+        const isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
+        if (!isMobile) {
+            e.preventDefault();
+            navigator.clipboard.writeText('+91 9644348997');
+            setPhoneCopied(true);
+            setTimeout(() => setPhoneCopied(false), 2000);
+        }
+    };
 
     useEffect(() => {
         const updateClock = () => {
@@ -83,6 +95,15 @@ export default function Footer() {
                   className="font-sans text-[14px] text-[--text-muted] hover:text-[--text] transition-colors"
                 >
                   kshitij@boringstudious.pro
+                </a>
+                <a
+                  href="tel:+919644348997"
+                  onClick={handlePhoneClick}
+                  className="font-sans text-[14px] text-[--text-muted] hover:text-[--text] transition-colors relative group w-fit"
+                  data-cursor
+                >
+                  {phoneCopied ? 'Copied!' : '+91 96443 48997'}
+                  <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-[--text] transition-all duration-300 group-hover:w-full" />
                 </a>
               </div>
             </div>
