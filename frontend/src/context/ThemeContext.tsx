@@ -2,49 +2,28 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-export type ThemeName = 'soft-editorial';
-
-
-export interface ThemeInfo {
-    name: ThemeName;
-    label: string;
-    description: string;
-    vibe: string;
-}
-
-export const themes: ThemeInfo[] = [
-    {
-        name: 'soft-editorial',
-        label: 'Soft Editorial',
-        description: 'Magazine-inspired warmth',
-        vibe: '📰 Classic',
-    }
-];
-
-const defaultTheme: ThemeName = 'soft-editorial';
+export type ThemeName = 'dark' | 'light';
 
 interface ThemeContextType {
     theme: ThemeName;
     setTheme: (theme: ThemeName) => void;
-
-    themeInfo: ThemeInfo;
+    toggleTheme: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-    theme: defaultTheme,
+    theme: 'dark',
     setTheme: () => { },
-    themeInfo: themes[0],
+    toggleTheme: () => { },
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-    const [theme, setTheme] = useState<ThemeName>(defaultTheme);
+    const [theme, setTheme] = useState<ThemeName>('dark');
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
         setMounted(true);
         const savedTheme = localStorage.getItem('boring-theme') as ThemeName | null;
-
-        if (savedTheme && themes.some(t => t.name === savedTheme)) {
+        if (savedTheme === 'dark' || savedTheme === 'light') {
             setTheme(savedTheme);
         }
     }, []);
@@ -56,10 +35,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         }
     }, [theme, mounted]);
 
-    const themeInfo = themes.find(t => t.name === theme) || themes[0];
+    const toggleTheme = () => {
+        setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+    };
 
     return (
-        <ThemeContext.Provider value={{ theme, setTheme, themeInfo }}>
+        <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
             {children}
         </ThemeContext.Provider>
     );

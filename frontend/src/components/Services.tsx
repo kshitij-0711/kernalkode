@@ -1,104 +1,127 @@
 'use client';
 
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const defaultServices = [
+const SERVICES = [
     {
-        id: 1,
+        id: '01',
         title: 'Website & Landing Page',
-        description: 'Stop bleeding money on ads that lead nowhere. We design sites that convert cold traffic into booked calls without you lifting a finger.',
+        description: 'Stop bleeding money on ads that lead nowhere. We design sites that convert cold traffic into booked calls without you lifting a finger.'
     },
     {
-        id: 2,
+        id: '02',
         title: 'E-Commerce',
-        description: 'Pretty product photos mean nothing if your checkout scares customers away. We create e-commerce sites that reduce cart abandonment and turn browsers into buyers.',
+        description: 'Pretty product photos mean nothing if your checkout scares customers away. We create e-commerce sites that reduce cart abandonment and turn browsers into buyers.'
     },
     {
-        id: 3,
+        id: '03',
         title: 'Branding',
-        description: 'Generic brand = commodity pricing. We create visual identities that let you charge 2x-3x more than competitors selling the exact same thing.',
+        description: 'Generic brand = commodity pricing. We create visual identities that let you charge 2x–3x more than competitors selling the exact same thing.'
     }
 ];
 
 export default function Services() {
-    const [services] = useState(defaultServices);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.fromTo('.services-fade', 
+                { y: 30, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: 'top 85%',
+                    }
+                }
+            );
+
+            gsap.fromTo('.service-row',
+                { y: 30, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: '.services-rows-container',
+                        start: 'top 90%',
+                    }
+                }
+            );
+        }, containerRef);
+        return () => ctx.revert();
+    }, []);
+
+    const toggleAccordion = (index: number) => {
+        setOpenIndex(openIndex === index ? null : index);
+    };
 
     return (
-        <section id="services" className="min-h-screen relative z-10 bg-[var(--background)] pt-32 pb-24 md:pt-48 md:pb-40 font-sans">
+        <section id="services" className="w-full px-6 md:px-12 py-[120px]" ref={containerRef}>
+            <div className="max-w-[1200px] mx-auto">
+                {/* Header */}
+                <div className="mb-20">
+                    <p className="services-fade font-sans text-[11px] uppercase tracking-[0.2em] text-[--text-muted] mb-4">
+                        — Specialization
+                    </p>
+                    <h2 className="services-fade font-serif text-[clamp(2rem,5vw,4rem)] font-light leading-none mb-8">
+                        What We Do
+                    </h2>
+                    <p className="services-fade font-sans text-[16px] text-[--text-muted] max-w-[560px] leading-[1.8]">
+                        We bridge the gap between aesthetics and conversion, formulating solutions that work relentlessly for your business.
+                    </p>
+                </div>
 
-            {/* Top Blur Merge Effect */}
-            <div
-                className="absolute top-0 left-0 w-full h-48 md:h-64 pointer-events-none z-20"
-                style={{
-                    background: 'linear-gradient(to bottom, var(--background) 0%, transparent 100%)',
-                    backdropFilter: 'blur(12px)',
-                    WebkitBackdropFilter: 'blur(12px)',
-                    maskImage: 'linear-gradient(to bottom, black 0%, transparent 100%)',
-                    WebkitMaskImage: 'linear-gradient(to bottom, black 0%, transparent 100%)'
-                }}
-            />
-
-            <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-30">
-                <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 relative">
-
-                    {/* Sticky Left Column (Restored to Bold Original) */}
-                    <div className="lg:w-5/12 relative">
-                        <div className="lg:sticky lg:top-40 flex flex-col items-start pr-0 lg:pr-10">
-                            <motion.span
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                                className="text-[var(--primary)] text-sm font-sans uppercase tracking-[0.2em] font-semibold mb-6 block"
-                            >
-                                Specialization
-                            </motion.span>
-
-                            <motion.h2
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                                className="text-3xl md:text-5xl lg:text-6xl font-excon font-bold text-[var(--foreground)] tracking-tight uppercase leading-[1.2] mb-8"
-                            >
-                                What<br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--primary)] to-[var(--foreground)] mt-2 block">We Do</span>
-                            </motion.h2>
-
-                            <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                                className="font-sans text-[var(--secondary)] text-lg leading-relaxed max-w-sm"
-                            >
-                                We bridge the gap between aesthetics and conversion, formulating solutions that work relentlessly for your business.
-                            </motion.p>
-                        </div>
-                    </div>
-
-                    {/* Scrolling Right Column (Kept Ultra Minimalist) */}
-                    <div className="lg:w-7/12 flex flex-col pt-12 lg:pt-0">
-                        {services.map((service, index) => (
-                            <motion.div
+                {/* Rows */}
+                <div className="services-rows-container border-t-[0.5px] border-[--border]">
+                    {SERVICES.map((service, index) => {
+                        const isOpen = openIndex === index;
+                        return (
+                            <div 
                                 key={service.id}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-50px" }}
-                                transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                                className="py-12 border-b border-[var(--border)] last:border-0"
+                                className="service-row border-b-[0.5px] border-[--border]"
                             >
-                                <h3 className="text-2xl md:text-3xl lg:text-4xl font-normal tracking-tight text-[var(--foreground)] mb-6">
-                                    {service.title}
-                                </h3>
-
-                                <p className="text-lg md:text-xl text-[var(--secondary)] font-light leading-relaxed max-w-xl opacity-80">
-                                    {service.description}
-                                </p>
-                            </motion.div>
-                        ))}
-                    </div>
+                                <button
+                                    onClick={() => toggleAccordion(index)}
+                                    className="w-full group flex items-center justify-between py-[28px] hover:bg-[rgba(240,237,232,0.02)] transition-colors duration-300 text-left cursor-none"
+                                    data-cursor
+                                >
+                                    <div className="flex items-center gap-6 md:gap-12 pl-2">
+                                        <span className="font-sans text-[11px] text-[--text-muted] min-w-[48px]">{service.id}</span>
+                                        <span className="font-serif text-[clamp(1.1rem,2.5vw,2.2rem)] font-light text-[--text] transition-colors">{service.title}</span>
+                                    </div>
+                                    <div className={`pr-2 transform transition-transform duration-500 ease-out ${isOpen ? 'rotate-90 text-[--text]' : 'text-[--text-muted] group-hover:translate-x-1'}`}>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5 12H19M19 12L12 5M19 12L12 19" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                        </svg>
+                                    </div>
+                                </button>
+                                
+                                {/* Accordion Content container */}
+                                <div 
+                                    className="overflow-hidden transition-[max-height] duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]"
+                                    style={{
+                                        maxHeight: isOpen ? '500px' : '0px'
+                                    }}
+                                >
+                                    <div className="pl-[72px] md:pl-[108px] pr-6 pb-[28px]">
+                                        <p className="font-sans text-[15px] text-[--text-muted] leading-[1.8] max-w-[600px]">
+                                            {service.description}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </section>

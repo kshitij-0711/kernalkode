@@ -1,165 +1,88 @@
 'use client';
 
-import React from 'react';
-import { useTheme } from '@/context/ThemeContext';
-import { motion } from 'framer-motion';
-import { ArrowDown, ArrowUpRight, Globe, Circle } from 'lucide-react';
-import Link from 'next/link';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { SplitText } from './SplitText';
 
 export default function Hero() {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const scrollLineRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const animateHero = () => {
+            const tl = gsap.timeline();
+
+            // Animate headline words
+            tl.to('.hero-word', {
+                y: '0%',
+                duration: 0.7,
+                stagger: 0.06,
+                ease: 'power3.out',
+            });
+
+            // Animate label, subtext, and button
+            tl.to('.hero-fade', {
+                y: 0,
+                opacity: 1,
+                duration: 0.7,
+                stagger: 0.1,
+                ease: 'power3.out',
+            }, "+=0.2");
+        };
+
+        // Listen for preloader completion to start hero animations
+        const handlePreloaderComplete = () => {
+            animateHero();
+        };
+
+        window.addEventListener('preloader-complete', handlePreloaderComplete);
+
+        // Fallback in case preloader isn't used or already finished
+        const fallbackTimer = setTimeout(() => {
+            if (!document.querySelector('.hero-word[style*="transform"]')) {
+               // animateHero(); // uncomment if we want standalone hero testing
+            }
+        }, 3000);
+
+        return () => {
+            window.removeEventListener('preloader-complete', handlePreloaderComplete);
+            clearTimeout(fallbackTimer);
+        };
+    }, []);
+
     return (
-        <section id="hero" className="min-h-screen relative bg-[var(--background)] overflow-hidden flex flex-col pt-24 select-none">
-            <HeroEditorial />
-        </section>
-    );
-}
-
-// ============================================================================
-// Hero Background (Unio Inspired blurred mesh & noise)
-// ============================================================================
-function HeroBackground() {
-    return (
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-            {/* Noise Overlay */}
-            <div
-                className="absolute inset-0 z-10 opacity-[0.04] mix-blend-overlay"
-                style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                }}
-            />
-
-            {/* Glowing Orbs */}
-            <motion.div
-                animate={{
-                    x: [0, 100, -50, 0],
-                    y: [0, -50, 100, 0],
-                }}
-                transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear"
-                }}
-                className="absolute -top-[20%] -left-[10%] w-[70vw] h-[70vw] rounded-full filter blur-[100px] opacity-[0.15] bg-[var(--primary)]"
-            />
-            <motion.div
-                animate={{
-                    x: [0, -100, 50, 0],
-                    y: [0, 100, -50, 0],
-                }}
-                transition={{
-                    duration: 25,
-                    repeat: Infinity,
-                    ease: "linear"
-                }}
-                className="absolute top-[20%] -right-[20%] w-[60vw] h-[60vw] rounded-full filter blur-[120px] opacity-[0.12] bg-[var(--secondary)]"
-            />
-        </div>
-    );
-}
-
-// ============================================================================
-// Hero: Unio Inspired (Typography Focused & Left Aligned)
-// ============================================================================
-function HeroEditorial() {
-    return (
-        <>
-            <HeroBackground />
-            <div className="flex-1 flex flex-col justify-center px-6 md:px-12 lg:px-24 max-w-7xl relative z-10 w-full mx-auto">
-
-
-
-                <div className="mt-20 md:mt-0 w-full">
-                    {/* Massive Left-Aligned Headline */}
-                    <motion.h1
-                        initial={{ y: 30, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                        className="text-3xl md:text-4xl lg:text-5xl leading-[1.2] font-excon font-bold tracking-tight text-[var(--foreground)] mb-8 max-w-none uppercase w-full"
-                    >
-                        We help businesses increase revenue<br className="hidden md:block" />
-                        through strategy-driven websites.
-                    </motion.h1>
-
-                    {/* Sub-headline with text generation effect */}
-                    <motion.p
-                        variants={{
-                            hidden: { opacity: 0 },
-                            visible: {
-                                opacity: 1,
-                                transition: { staggerChildren: 0.015, delayChildren: 0.1 }
-                            }
-                        }}
-                        initial="hidden"
-                        animate="visible"
-                        className="text-lg md:text-2xl text-[var(--secondary)] font-light leading-relaxed max-w-2xl mb-12 min-h-[4rem]"
-                    >
-                        {"Revenue-first design and development for businesses that refuse to blend in. We transform complex problems into elegant web experiences.".split("").map((char, index) => (
-                            <motion.span
-                                key={index}
-                                variants={{
-                                    hidden: { opacity: 0 },
-                                    visible: { opacity: 1 }
-                                }}
-                            >
-                                {char}
-                            </motion.span>
-                        ))}
-                    </motion.p>
-
-                    {/* Pill CTAs */}
-                    <motion.div
-                        initial={{ y: 30, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                        className="flex flex-col sm:flex-row gap-4 items-center"
-                    >
-                        <button
-                            onClick={(e) => {
-                                e.preventDefault();
-                                document.getElementById('booking-calendar')?.scrollIntoView({ behavior: 'smooth' });
-                            }}
-                            className="group relative overflow-hidden px-8 py-4 bg-[var(--primary)] text-[var(--background)] rounded-full font-semibold text-center isolate hover:bg-[var(--primary)] inline-block"
-                        >
-                            <span className="absolute inset-0 w-full h-full -z-10 bg-[var(--foreground)] -translate-y-full rounded-b-[50%] group-hover:translate-y-0 group-hover:rounded-none transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]"></span>
-                            <span className="relative z-10 overflow-hidden block">
-                                <span className="inline-block transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-[150%]">Book an Intro Call</span>
-                                <span className="absolute inset-0 flex items-center justify-center text-[var(--background)] -translate-y-[150%] transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-0">Book an Intro Call</span>
-                            </span>
-                        </button>
-                        <button
-                            onClick={(e) => {
-                                e.preventDefault();
-                                document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
-                            }}
-                            className="px-8 py-4 bg-transparent border-2 border-[var(--foreground)]/20 text-[var(--foreground)] rounded-full hover:border-[var(--foreground)] transition-all duration-300 font-bold text-center flex items-center justify-center gap-2"
-                        >
-                            View Our Work <ArrowUpRight size={18} />
-                        </button>
-                    </motion.div>
-                </div>
-            </div>
-
-            {/* Bottom Marquee (Absolute to stick to bottom of hero, full screen width) */}
-            <div className="absolute bottom-0 left-0 right-0 w-full border-t border-[var(--foreground)]/10 bg-[var(--background)]/80 backdrop-blur-sm py-4 overflow-hidden z-20 group">
-                <div className="flex items-center">
-                    <div className="flex-1 overflow-hidden relative">
-                        <div className="flex w-max animate-marquee hover:[animation-play-state:paused] group-hover:[animation-play-state:paused] whitespace-nowrap items-center gap-12 px-6 text-[var(--foreground)]/40 font-bold text-xl uppercase tracking-widest">
-                            {/* Duplicate set for seamless looping */}
-                            <span>Design Excellence</span>
-                            <span>Scalable Systems</span>
-                            <span>Revenue Focused</span>
-                            <span>Forward Thinking</span>
-                            <span>Pixel Perfect</span>
-
-                            <span>Design Excellence</span>
-                            <span>Scalable Systems</span>
-                            <span>Revenue Focused</span>
-                            <span>Forward Thinking</span>
-                            <span>Pixel Perfect</span>
-                        </div>
+        <section className="relative w-full h-[100vh] flex flex-col justify-center px-6 md:px-12 pt-24" id="home">
+            <div ref={containerRef} className="max-w-[1200px]">
+                <h1 className="font-serif text-[clamp(2.5rem,8vw,7rem)] leading-[1.05] font-light mb-8 max-w-[1400px] tracking-[-0.05em]">
+                    <div className="flex flex-wrap">
+                        <SplitText 
+                            text="We help businesses increase revenue" 
+                            wordClass="hero-word inline-block translate-y-[100%]" 
+                        />
                     </div>
+                    <div className="flex flex-wrap">
+                        <SplitText 
+                            text="through strategy driven websites." 
+                            wordClass="hero-word inline-block translate-y-[100%]" 
+                        />
+                    </div>
+                </h1>
+
+                <p className="hero-fade font-sans text-[15px] md:text-[16px] text-[--text-muted] max-w-[520px] leading-[1.8] mb-12 opacity-0 translate-y-5">
+                    Revenue-first design and development for businesses that refuse to blend in.
+                </p>
+
+                <div className="hero-fade opacity-0 translate-y-5 inline-block">
+                    {/* The Button */}
+                    <a href="#contact" className="group relative inline-block font-sans text-[12px] uppercase tracking-[0.12em] border-[0.5px] border-[--border-hover] py-[14px] px-[32px] overflow-hidden rounded-[2px]" data-cursor>
+                        <span className="relative z-10 transition-colors duration-300 group-hover:text-[--bg]">
+                            Book an Intro Call &rarr;
+                        </span>
+                        {/* Fill effect */}
+                        <div className="absolute inset-0 bg-[--text] scale-y-0 origin-bottom transition-transform duration-300 group-hover:scale-y-100 z-0"></div>
+                    </a>
                 </div>
             </div>
-        </>
+        </section>
     );
 }

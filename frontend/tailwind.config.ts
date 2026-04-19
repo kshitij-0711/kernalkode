@@ -9,38 +9,34 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                background: "var(--background)",
-                foreground: "var(--foreground)",
-                primary: "var(--primary)",
-                secondary: "var(--secondary)",
-                accent: "var(--accent)",
-                muted: "var(--muted)",
+                bg: "var(--bg)",
+                text: "var(--text)",
+                "text-muted": "var(--text-muted)",
                 border: "var(--border)",
+                "border-hover": "var(--border-hover)",
             },
             fontFamily: {
-                sans: ["var(--font-sans)", "sans-serif"],
-                serif: ["var(--font-serif)", "serif"],
-                mono: ["var(--font-mono)", "monospace"],
-                excon: ["var(--font-excon)"],
+                sans: ["var(--font-jetbrains-mono)", "monospace"],
+                serif: ["var(--font-jetbrains-mono)", "monospace"],
             },
             keyframes: {
                 marquee: {
                     '0%': { transform: 'translateX(0%)' },
                     '100%': { transform: 'translateX(-50%)' },
                 },
-                "accordion-down": {
-                    from: { height: "0" },
-                    to: { height: "var(--radix-accordion-content-height)" },
+                marqueeRight: {
+                    '0%': { transform: 'translateX(-50%)' },
+                    '100%': { transform: 'translateX(0%)' },
                 },
-                "accordion-up": {
-                    from: { height: "var(--radix-accordion-content-height)" },
-                    to: { height: "0" },
-                },
+                "fade-in": {
+                    '0%': { opacity: '0' },
+                    '100%': { opacity: '1' },
+                }
             },
             animation: {
-                marquee: 'marquee 20s linear infinite',
-                "accordion-down": "accordion-down 0.2s ease-out",
-                "accordion-up": "accordion-up 0.2s ease-out",
+                marquee: 'marquee 45s linear infinite',
+                marqueeRight: 'marqueeRight 45s linear infinite',
+                'fade-in': 'fade-in 1s ease-out forwards',
             }
         },
     },
