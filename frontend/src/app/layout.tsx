@@ -23,6 +23,18 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Boring Studios",
   description: "Premium Web Development Studio",
+  openGraph: {
+    title: "Boring Studios",
+    description: "Premium Web Development Studio",
+    siteName: "Boring Studios",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Boring Studios",
+    description: "Premium Web Development Studio",
+  },
 };
 
 export default function RootLayout({
