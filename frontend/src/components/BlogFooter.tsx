@@ -2,42 +2,12 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import Cal, { getCalApi } from "@calcom/embed-react";
-import ContactForm from './ContactForm';
 
-function BookingCalendar() {
-    useEffect(() => {
-        (async function () {
-            const cal = await getCalApi({ "namespace": "30min" });
-            cal("ui", {
-                "hideEventTypeDetails": false,
-                "layout": "month_view",
-                "cssVarsPerTheme": {
-                    "light": { "cal-bg": "transparent" },
-                    "dark": { "cal-bg": "transparent" }
-                }
-            });
-        })();
-    }, []);
-
-    return (
-        <div id="booking-calendar" className="cal-inline-container w-full min-h-[600px] flex items-center justify-center border-[0.5px] border-[--border] rounded-[2px] mb-12" style={{ overflow: 'hidden' }}>
-            <Cal
-                namespace="30min"
-                calLink="gothamsbat/30min"
-                style={{ width: "100%", height: "100%", overflow: "hidden", minHeight: "600px" }}
-                config={{ "layout": "month_view" }}
-            />
-        </div>
-    );
-}
-
-export default function Footer() {
+export default function BlogFooter() {
     const [timeString, setTimeString] = useState('');
     const [phoneCopied, setPhoneCopied] = useState(false);
 
     const handlePhoneClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        // On desktop, copy to clipboard; on mobile, let tel: link open dialer
         const isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
         if (!isMobile) {
             e.preventDefault();
@@ -58,29 +28,16 @@ export default function Footer() {
     }, []);
 
     return (
-      <section id="contact" className="w-full pt-[120px]" aria-label="Contact Boring Studios">
-        {/* Contact Form Area */}
-        <div className="px-6 md:px-12 mb-32 max-w-[1200px] mx-auto">
-          <p className="font-sans text-[11px] uppercase tracking-[0.2em] text-[--text-muted] mb-4">
-            — Get In Touch
-          </p>
-          <h2 className="font-serif text-[clamp(2rem,5vw,4rem)] font-light leading-none mb-12">
-            Let&apos;s Build Something
-          </h2>
-
-          <BookingCalendar />
-
-          <ContactForm />
-        </div>
-
-        {/* Large Display Text — decorative, NOT an h1 (SEO: one H1 per page) */}
+      <section className="w-full pt-[80px]">
+        {/* Large Display Text */}
         <div className="w-full overflow-hidden flex justify-center py-[4vw]">
-          <span
-            className="font-serif text-[clamp(3rem,12vw,12rem)] font-light text-[--text] leading-none whitespace-nowrap tracking-tighter"
-            aria-hidden="true"
+          <Link
+            href="/"
+            className="font-serif text-[clamp(3rem,12vw,12rem)] font-light text-[--text] leading-none whitespace-nowrap tracking-tighter hover:text-[--text-muted] transition-colors duration-500"
+            data-cursor
           >
             Boring Studios
-          </span>
+          </Link>
         </div>
 
         {/* Footer Grid */}
@@ -113,21 +70,29 @@ export default function Footer() {
                 </a>
               </address>
             </nav>
+
             <nav aria-label="Pages">
               <h4 className="font-sans text-[11px] uppercase tracking-[0.2em] text-[--text-muted] mb-6 pb-2 border-b-[0.5px] border-[--border]">
                 Pages
               </h4>
               <div className="flex flex-col gap-4">
                 <Link
+                  href="/"
+                  className="font-sans text-[14px] text-[--text] hover:text-[--text-muted] transition-colors relative inline-block w-fit"
+                  data-cursor
+                >
+                  Home
+                </Link>
+                <Link
                   href="/blog"
-                  className="font-sans text-[14px] text-[--text] hover:text-[--text-muted] transition-colors relative inline-block w-fit group"
+                  className="font-sans text-[14px] text-[--text] hover:text-[--text-muted] transition-colors relative inline-block w-fit"
                   data-cursor
                 >
                   Blog
-                  <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-[--text] transition-all duration-300 group-hover:w-full" />
                 </Link>
               </div>
             </nav>
+
             <nav aria-label="Social media links">
               <h4 className="font-sans text-[11px] uppercase tracking-[0.2em] text-[--text-muted] mb-6 pb-2 border-b-[0.5px] border-[--border]">
                 Follow
