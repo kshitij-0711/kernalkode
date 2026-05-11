@@ -1,19 +1,22 @@
-import { MetadataRoute } from 'next';
+import { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'BoringStudious',
-    short_name: 'BoringStudious',
-    description: 'A full-stack landing page with stunning design variants for premium web development services.',
-    start_url: '/',
-    display: 'standalone',
-    background_color: '#ffffff', // adjust to your theme
-    theme_color: '#000000', // adjust to your theme
+    name: "Boring Studios – Premium Web Design & Development Agency",
+    short_name: "Boring Studios",
+    description:
+      "Revenue-first web design & development studio. High-converting websites, landing pages & e-commerce stores that turn visitors into customers.",
+    start_url: "/",
+    display: "standalone",
+    background_color: "#0f0f0f",
+    theme_color: "#0f0f0f",
+    orientation: "portrait-primary",
+    categories: ["business", "design", "technology"],
     icons: [
       {
-        src: '/favicon.ico',
-        sizes: 'any',
-        type: 'image/x-icon',
+        src: "/favicon.ico",
+        sizes: "any",
+        type: "image/x-icon",
       },
     ],
   };

@@ -119,7 +119,7 @@ export default function Work() {
     };
 
     return (
-        <section id="work" className="w-full px-6 md:px-12 py-[120px]" ref={containerRef}>
+        <section id="work" className="w-full px-6 md:px-12 py-[120px]" ref={containerRef} aria-label="Portfolio – Selected web design and development work">
             <div className="max-w-[1200px] mx-auto relative">
                 {/* Header */}
                 <div className="mb-20">

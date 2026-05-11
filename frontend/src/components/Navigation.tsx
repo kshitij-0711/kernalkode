@@ -23,7 +23,7 @@ export default function Navigation() {
     ];
 
     return (
-        <nav className="fixed top-0 left-0 w-full h-[64px] px-6 md:px-12 flex justify-between items-center z-[100] bg-transparent">
+        <nav className="fixed top-0 left-0 w-full h-[64px] px-6 md:px-12 flex justify-between items-center z-[100] bg-transparent" aria-label="Main navigation">
             {/* Logo */}
             <Link href="/" className="font-serif text-[20px] font-light">
                 Boring.

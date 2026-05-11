@@ -66,7 +66,7 @@ export default function Services() {
     };
 
     return (
-        <section id="services" className="w-full px-6 md:px-12 py-[120px]" ref={containerRef}>
+        <section id="services" className="w-full px-6 md:px-12 py-[120px]" ref={containerRef} aria-label="Web design and development services">
             <div className="max-w-[1200px] mx-auto">
                 {/* Header */}
                 <div className="mb-20">

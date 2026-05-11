@@ -70,7 +70,7 @@ export default function Pricing() {
     }, []);
 
     return (
-        <section id="pricing" className="w-full px-6 md:px-12 py-[120px]" ref={containerRef}>
+        <section id="pricing" className="w-full px-6 md:px-12 py-[120px]" ref={containerRef} aria-label="Web design pricing plans">
             <div className="max-w-[1200px] mx-auto">
                 <div className="mb-20 text-center md:text-left">
                     <p className="pricing-fade font-sans text-[11px] uppercase tracking-[0.2em] text-[--text-muted] mb-4">

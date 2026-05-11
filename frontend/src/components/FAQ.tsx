@@ -87,7 +87,7 @@ export default function FAQ() {
     };
 
     return (
-        <section id="faq" className="w-full px-6 md:px-12 py-[120px]" ref={containerRef}>
+        <section id="faq" className="w-full px-6 md:px-12 py-[120px]" ref={containerRef} aria-label="Frequently asked questions about web design services">
             <div className="max-w-[1000px] mx-auto">
                 <div className="mb-16">
                     <p className="faq-fade font-sans text-[11px] uppercase tracking-[0.2em] text-[--text-muted] mb-4">

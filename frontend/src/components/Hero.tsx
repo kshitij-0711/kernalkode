@@ -51,7 +51,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <section className="relative w-full h-[100vh] flex flex-col justify-center px-6 md:px-12 pt-24" id="home">
+        <section className="relative w-full h-[100vh] flex flex-col justify-center px-6 md:px-12 pt-24" id="home" aria-label="Hero – Boring Studios premium web design and development">
             <div ref={containerRef} className="max-w-[1200px]">
                 <h1 className="font-serif text-[clamp(2.5rem,8vw,7rem)] leading-[1.05] font-light mb-8 max-w-[1400px] tracking-[-0.05em]">
                     <div className="flex flex-wrap">

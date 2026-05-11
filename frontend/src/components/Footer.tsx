@@ -57,14 +57,14 @@ export default function Footer() {
     }, []);
 
     return (
-      <section id="contact" className="w-full pt-[120px]">
+      <section id="contact" className="w-full pt-[120px]" aria-label="Contact Boring Studios">
         {/* Contact Form Area */}
         <div className="px-6 md:px-12 mb-32 max-w-[1200px] mx-auto">
           <p className="font-sans text-[11px] uppercase tracking-[0.2em] text-[--text-muted] mb-4">
             — Get In Touch
           </p>
           <h2 className="font-serif text-[clamp(2rem,5vw,4rem)] font-light leading-none mb-12">
-            Let's Build Something
+            Let&apos;s Build Something
           </h2>
 
           <BookingCalendar />
@@ -72,27 +72,31 @@ export default function Footer() {
           <ContactForm />
         </div>
 
-        {/* Large Display Text */}
+        {/* Large Display Text — decorative, NOT an h1 (SEO: one H1 per page) */}
         <div className="w-full overflow-hidden flex justify-center py-[4vw]">
-          <h1 className="font-serif text-[clamp(3rem,12vw,12rem)] font-light text-[--text] leading-none whitespace-nowrap tracking-tighter">
+          <span
+            className="font-serif text-[clamp(3rem,12vw,12rem)] font-light text-[--text] leading-none whitespace-nowrap tracking-tighter"
+            aria-hidden="true"
+          >
             Boring Studios
-          </h1>
+          </span>
         </div>
 
         {/* Footer Grid */}
-        <div className="w-full border-t-[0.5px] border-[--border] px-6 md:px-12 pt-[48px] pb-[32px]">
+        <footer className="w-full border-t-[0.5px] border-[--border] px-6 md:px-12 pt-[48px] pb-[32px]" role="contentinfo">
           <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div>
+            <nav aria-label="Contact information">
               <h4 className="font-sans text-[11px] uppercase tracking-[0.2em] text-[--text-muted] mb-6 pb-2 border-b-[0.5px] border-[--border]">
                 Directory
               </h4>
-              <div className="flex flex-col gap-4">
+              <address className="flex flex-col gap-4 not-italic">
                 <span className="font-sans text-[14px] text-[--text]">
                   Inquiries
                 </span>
                 <a
-                  href="mailto:hello@boringstudios.pro"
+                  href="mailto:kshitij@boringstudious.pro"
                   className="font-sans text-[14px] text-[--text-muted] hover:text-[--text] transition-colors"
+                  aria-label="Email Boring Studios at kshitij@boringstudious.pro"
                 >
                   kshitij@boringstudious.pro
                 </a>
@@ -101,13 +105,14 @@ export default function Footer() {
                   onClick={handlePhoneClick}
                   className="font-sans text-[14px] text-[--text-muted] hover:text-[--text] transition-colors relative group w-fit"
                   data-cursor
+                  aria-label="Call Boring Studios at +91 96443 48997"
                 >
                   {phoneCopied ? 'Copied!' : '+91 96443 48997'}
                   <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-[--text] transition-all duration-300 group-hover:w-full" />
                 </a>
-              </div>
-            </div>
-            <div>
+              </address>
+            </nav>
+            <nav aria-label="Social media links">
               <h4 className="font-sans text-[11px] uppercase tracking-[0.2em] text-[--text-muted] mb-6 pb-2 border-b-[0.5px] border-[--border]">
                 Follow
               </h4>
@@ -116,6 +121,9 @@ export default function Footer() {
                   href="https://www.linkedin.com/in/kshitij-kevat-42b81a280"
                   className="font-sans text-[14px] text-[--text] hover:text-[--text-muted] transition-colors relative inline-block w-fit"
                   data-cursor
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Follow Boring Studios on LinkedIn"
                 >
                   LinkedIn
                 </a>
@@ -123,13 +131,16 @@ export default function Footer() {
                   href="https://x.com/kshitij_00"
                   className="font-sans text-[14px] text-[--text] hover:text-[--text-muted] transition-colors relative inline-block w-fit"
                   data-cursor
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Follow Boring Studios on Twitter"
                 >
                   Twitter
                 </a>
               </div>
-            </div>
+            </nav>
           </div>
-        </div>
+        </footer>
 
         {/* Footer Bar */}
         <div className="w-full border-t-[0.5px] border-[--border] px-6 md:px-12 py-[16px]">
@@ -144,7 +155,7 @@ export default function Footer() {
               {timeString || "00:00:00"}
             </span>
             <span className="font-sans text-[12px] text-[--text-muted]">
-              © 2025. Boring Studios. All rights reserved
+              © {new Date().getFullYear()} Boring Studios. All rights reserved.
             </span>
           </div>
         </div>
